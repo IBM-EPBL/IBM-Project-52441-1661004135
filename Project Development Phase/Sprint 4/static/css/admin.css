@@ -1,0 +1,37 @@
+body {
+    background-color: rgb(192, 171, 171);;
+    box-sizing: border-box;
+}
+
+.dash {
+    padding: 50px 0;
+}
+
+.header {
+    font-size: 1.2rem;
+    background-color: rgb(192, 171, 171);
+    padding: 50px;
+    border: 1px solid black;
+    margin: 0 20px;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+.header >h4{
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.combutton {
+    margin: 10px 30px;
+    padding: 10px 30px;
+    border-radius: 10px;
+}
+
+.btns {
+    padding: 5px 30px;
+}
+
+.btns:hover {
+    background-color: rgb(143, 131, 116);
+}
