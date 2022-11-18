@@ -1,0 +1,215 @@
+body {
+    background-color: rgb(192, 171, 171);
+    box-sizing: border-box;
+}
+
+.dash {
+    padding: 50px 0;
+}
+
+.header {
+    font-size: 1.2rem;
+    background-color: rgb(192, 171, 171);
+    padding: 50px;
+    border: 1px solid black;
+    margin: 0 20px;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+.header >h4{
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.rowh {
+    min-height: 75vh;
+}
+
+.colh {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.maincon {
+    padding: 40px;
+    border-radius: 20px;
+    height: 100%;
+    text-align: start;
+    background-color: aliceblue;
+}
+
+.maincon > h4 {
+    text-decoration: underline;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+.maincon > h5 {
+    padding: 10px 20px;
+    /*background-color: beige;*/
+    border-radius: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.normsize {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+   /* min-width: 250px;
+    min-height: 350px;*/
+}
+
+.lesssize {
+    width: 90%;
+    height: 90%;
+}
+
+.normpadding {
+    padding: 30px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.roudcorner {
+    border-radius: 25px;
+    margin: 10px;
+}
+
+.comcolor {
+    background-color: aliceblue;
+    -webkit-box-shadow: 9px 10px 23px 7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 9px 10px 23px 7px rgba(0,0,0,0.75);
+    box-shadow: 9px 10px 23px 7px rgba(0,0,0,0.75); 
+}
+
+.comflex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 30px;
+}
+
+.comflex-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 30px;
+}
+
+.subflex {
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+
+.combutton {
+    margin: 10px 30px;
+    padding: 10px 30px;
+    border-radius: 10px;
+}
+
+.btns {
+    padding: 5px 30px;
+}
+
+.btns:hover {
+    background-color: rgb(143, 131, 116);
+}
+
+/*floating list - view history*/
+
+.float {
+    position: absolute;
+    margin-inline: auto;
+    top: 25vh;
+    min-height: 30vh;
+    display: flex;
+    justify-content: center;
+}
+
+.containers {
+    width: min(calc(100% - 15%), 840px);
+    margin-inline: auto;
+}
+
+.floatcontainer {
+   display: flex;
+   flex-direction: column;
+   background-color: white;
+   border-radius: 25px;
+   -webkit-box-shadow: 6px 6px 21px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 6px 21px 4px rgba(0,0,0,0.75);
+    box-shadow: 6px 6px 21px 4px rgba(0,0,0,0.75);
+}
+
+.box1 {
+    display: flex;
+    justify-content: right;
+    position: relative;
+}
+
+.closes {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+  }
+  .closes:hover {
+    opacity: 1;
+  }
+  .closes:before, .closes:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .closes:before {
+    transform: rotate(45deg);
+  }
+  .closes:after {
+    transform: rotate(-45deg);
+  }
+
+  .box2 {
+    margin: 20px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bcol{
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+
+  .inline {
+  display: inline;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1em;
+  font-family: serif;
+}
+.link-button:focus {
+  outline: none;
+}
+.link-button:active {
+  color:red;
+}
