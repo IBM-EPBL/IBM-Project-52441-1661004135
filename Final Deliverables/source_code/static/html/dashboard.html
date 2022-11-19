@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
+    <link rel="icon" href="{{ url_for( 'static', filename = 'src/cardiogram.png')}}">
+    <title>Welcome {{user}}</title>
+
+</head>
+<body>
+
+    {% if msg %}
+    <div class="msg bg-info" style="padding: 0px 0 0px 50px;margin: 20px 20px 0 20px;border-radius: 20px;">
+        <h4>{{msg}}</h4>
+    </div>
+    {% endif %}
+
+
+    <div class="container-fluid dash">
+        <div class="header p-3">
+            <h3><img src="{{url_for('static', filename='src/user.jpg')}}" alt="ico" width="50px" height="50px">&nbsp;&nbsp;Dashboard</h3>
+            <div style="display:flex; justify-content: right;align-items: center;">Welcome {{user}},&nbsp;&nbsp;<form action="" method="post" enctype="multipart/form-data"><button type="submit" name="logout" class="combutton btns">Log Out</button></form></div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row rowh">
+            <div class="col-lg-4 colh">
+                <div class="maincon comcolor">
+                    <h4>Control panal</h4>
+                    <h5><form action="" name="deleteHistory" method="post" enctype="multipart/form-data"><input style="width: 200px;border:0px;padding:10px 40px;border-radius:20px;" type="submit" name="deleteHistory" value="Delete All History"></form></h5>
+                    <table>
+                        <tr>
+                            <th>History</th>
+                        </tr>
+                        {% for row in history %}
+                        <tr>
+                            <td>{{ row['TIME'] }}</td>
+                            <td><form method="post" action="{{url_for('homepage')}}" class="inline">
+                                    <input type="hidden" name="extra_submit_param_view" value="{{row['NUTRITION']}}">
+                                    <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                                        View
+                                    </button>
+                                </form>
+                            </td>
+                            <td><form method="post" action="{{url_for('homepage')}}" class="inline">
+                                    <input type="hidden" name="extra_submit_param_delete" value="{{row['TIME']}}">
+                                    <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+            </div>
+            <div class="col-lg-8 row colh">
+                <div class="row normsize">
+                    <div class="col-lg normsize roudcorner comcolor">
+                        <div class="comflex-col">
+                            <img id="myImage" class="normsize" style="border: 5px solid rgb(25, 25, 25);;" src="{{url_for('static', filename='src/food.jpg')}}" alt="food" width="300" height="300">
+                            <button class="combutton btns" onclick="setImage()" >Clear Image</button>
+                        </div>
+                    </div>
+                    <div class="col-lg normsize roudcorner comcolor">
+                        <div class="comflex lesssize normpadding">
+                            <div>
+                                <h1>Upload Image</h1>
+                                <form action="{{url_for('upload_file')}}" method="post" enctype="multipart/form-data">
+                                    <input type=file onchange="readURL(this);" name="file">
+                                    <input style="margin: 10px 0px;" onclick="setImage()" type=submit value=Upload name="upload">
+                                </form>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% if data %}
+    <dic class="container-fluid float">
+        <div class="containers floatcontainer ">
+            <div class="box1">
+                <div class="close">
+                    <a href="{{url_for('upload_file',methods='POST')}}" class="closes"></a>
+                </div>
+            </div>
+            <div style="background-color: rgb(105, 102, 102);margin-top: 25px;font-size: 30px;font-weight: bold;padding-left: 15px;"><p>Nutrition Facts</p></div>
+            <div class="box2">
+                <div class="bcol">
+                    <table style="width:100%;">
+                        <tr>
+                          <th>Calories</th>
+                          <th>{{data[0]}}{{unit[0]}}</th>
+                        </tr>
+                        <tr>
+                          <th></th>
+                          <th>Daily Value</th>
+                        </tr>
+                        <tr>
+                          <th>Total Fat</th>
+                          <th>{{data[1]}}{{unit[1]}}</th>
+                        </tr>
+                        <tr>
+                            <td>Saturated Fat</td>
+                            <td>{{data[2]}}{{unit[2]}}</td>
+                        </tr>
+                        <tr>
+                            <td>Polyunsaturated Fat</td>
+                            <td>{{data[3]}}{{unit[3]}}</td>
+                        </tr>
+                        <tr>
+                            <td>Monounsaturated Fat</td>
+                            <td>{{data[4]}}{{unit[4]}}</td>
+                        </tr>
+                        <tr>
+                            <th>Cholesterol</th>
+                            <th>{{data[5]}}{{unit[5]}}</th>
+                        </tr>
+                        <tr>
+                            <th>Sodium</th>
+                            <th>{{data[6]}}{{unit[6]}}</th>
+                        </tr>
+                        <tr>
+                            <th>Potassium</th>
+                            <th>{{data[7]}}{{unit[7]}}</th>
+                        </tr>
+                        <tr>
+                            <th>Sugar</th>
+                            <th>{{data[8]}}{{unit[8]}}</th>
+                          </tr>
+                          <tr>
+                            <th>Protein</th>
+                            <th>{{data[9]}}{{unit[9]}}</th>
+                          </tr>
+                          <tr>
+                            <th>Carbohydrates</th>
+                            <th>{{data[10]}}{{unit[10]}}</th>
+                          </tr>
+                          <tr>
+                            <th>Vitamin A</th>
+                            <th>{{data[11]}}{{unit[11]}}</th>
+                          </tr>
+                          <tr>
+                            <th>Vitamin C</th>
+                            <th>{{data[12]}}{{unit[12]}}</th>
+                          </tr>
+                          <tr>
+                            <th>Vitamin D</th>
+                            <th>{{data[13]}}{{unit[13]}}</th>
+                          </tr>
+                          <tr>
+                            <th>Vitamin B5</th>
+                            <th>{{data[14]}}{{unit[14]}}</th>
+                          </tr>
+                          <tr>
+                            <th>Calcium</th>
+                            <th>{{data[15]}}{{unit[15]}}</th>
+                          </tr>
+                      </table>
+                </div>
+
+            </div>
+
+        </div>
+    </dic>
+    {% endif %}
+
+
+    <script>
+         //image = document.getElementById('myImage');
+        function clearImage() {
+            image.src = "{{url_for('static',filename='src/user.jpg')}}";  //onclick="document.getElementById('myImage').src='src/omplate.png'"
+        }
+
+        function setImage() {
+            image.src = "{{url_for('static',filename='src/food.jpg')}}";
+        }
+    </script>
+    <script src="{{url_for('static', filename='js/dashboard.js')}}">
+        
+    </script>
+</body>
+</html>
